@@ -1,4 +1,6 @@
-import axios from "axios";
+import axios from 'axios';
+
+import { unifyApiData } from './unifyApiData';
 
 export default async function getWeatherData(lat: string, lon: string) {
   
@@ -8,10 +10,9 @@ export default async function getWeatherData(lat: string, lon: string) {
   const tomorrowIoPath = `https://api.tomorrow.io/v4/timelines?location=${lat},${lon}&fields=temperature,weatherCode&timesteps=1h&units=metric&apikey=${process.env.REACT_APP_TOMORROW_IO_KEY}`;
 
   // If cant reach first api, will try to use de second one
-  let apiData = await axios.get(weatherApiPath)
+  const apiData : any = await axios.get(weatherApiPath)
     .then(response => {
       if (response && response.status === 200) {
-        console.log(response);
         return response;
       }
     })
@@ -20,14 +21,16 @@ export default async function getWeatherData(lat: string, lon: string) {
     await axios.get(tomorrowIoPath)
       .then(response => {
         if(response && response.status === 200) {
-          console.log(response);  
           return response;
         }
       })
       .catch(err => console.log(err));
 
-  return apiData;
+  const weatherData = unifyApiData(apiData);
+  console.log(weatherData); // TEMP
+  
+  return weatherData;
 }
 
-getWeatherData('-26.7851281','-51.0184181')
+getWeatherData('-26.7851281','-51.0184181') // TEMP
 
