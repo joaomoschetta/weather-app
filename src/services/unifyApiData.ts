@@ -19,7 +19,7 @@ interface IForecastHour {
   condition: IForecastCondition;
 }
 
-interface IForecast {
+export interface IForecast {
   date: string;
   minCelsiusTemperature: number;
   maxCelsiusTemperature: number;
@@ -27,15 +27,19 @@ interface IForecast {
   hour: IForecastHour[];
 };
 
-interface IWeatherData {
-  now: {
-    temperatureInCelsius: number;
-    condition: IForecastCondition;
-  }
-  today: {
-    minCelsiusTemperature: number;
-    maxCelsiusTemperature: number;
-  }
+export interface IWeatherDataNow {
+  temperatureInCelsius: number;
+  condition: IForecastCondition;
+}
+
+export interface IWeatherDataToday {
+  minCelsiusTemperature: number;
+  maxCelsiusTemperature: number;
+}
+
+export interface IWeatherData {
+  now: IWeatherDataNow;
+  today: IWeatherDataToday;
   forecast: IForecast[];
 };
 
