@@ -3,6 +3,8 @@
  * https://jestjs.io/docs/en/configuration.html
  */
 
+const {defaults} = require('jest-config');
+
 module.exports = {
   // All imported modules in your tests should be mocked automatically
   // automock: false,
@@ -71,17 +73,16 @@ module.exports = {
   // ],
 
   // An array of file extensions your modules use
-  // moduleFileExtensions: [
-  //   "js",
-  //   "json",
-  //   "jsx",
-  //   "ts",
-  //   "tsx",
-  //   "node"
-  // ],
+  moduleFileExtensions: [
+    ...defaults.moduleFileExtensions,
+    "ts",
+    "tsx"
+  ],
 
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
-  // moduleNameMapper: {},
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1',
+  },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
   // modulePathIgnorePatterns: [],
@@ -117,9 +118,9 @@ module.exports = {
   // rootDir: undefined,
 
   // A list of paths to directories that Jest should use to search for files in
-  // roots: [
-  //   "<rootDir>"
-  // ],
+  roots: [
+    "<rootDir>/src"
+  ],
 
   // Allows you to use a custom runner instead of Jest's default test runner
   // runner: "jest-runner",
@@ -128,7 +129,10 @@ module.exports = {
   // setupFiles: [],
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
-  // setupFilesAfterEnv: [],
+  setupFilesAfterEnv: [
+    "@testing-library/jest-dom/extend-expect",
+    "jest-extended"
+  ],
 
   // The number of seconds after which a test is considered as slow and reported as such in the results.
   // slowTestThreshold: 5,
@@ -137,7 +141,7 @@ module.exports = {
   // snapshotSerializers: [],
 
   // The test environment that will be used for testing
-  testEnvironment: "node",
+  testEnvironment: "jsdom",
 
   // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},
@@ -147,7 +151,8 @@ module.exports = {
 
   // The glob patterns Jest uses to detect test files
   testMatch: [
-    "**/__tests__/**/*.test.js?(x)",
+    "**/__tests__/**/*.test.ts?(x)",
+    // "**/__tests__/**/*.test.js?(x)",
     // "**/?(*.)+(spec|test).[tj]s?(x)"
   ],
 
@@ -157,7 +162,7 @@ module.exports = {
   // ],
 
   // The regexp pattern or array of patterns that Jest uses to detect test files
-  // testRegex: [],
+  // testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
 
   // This option allows the use of a custom results processor
   // testResultsProcessor: undefined,
@@ -172,7 +177,9 @@ module.exports = {
   // timers: "real",
 
   // A map from regular expressions to paths to transformers
-  // transform: undefined,
+  transform: {
+    "^.+\\.tsx?$": "ts-jest"
+  },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
   // transformIgnorePatterns: [
@@ -184,7 +191,7 @@ module.exports = {
   // unmockedModulePathPatterns: undefined,
 
   // Indicates whether each individual test should be reported during the run
-  // verbose: undefined,
+  verbose: true,
 
   // An array of regexp patterns that are matched against all source file paths before re-running tests in watch mode
   // watchPathIgnorePatterns: [],
