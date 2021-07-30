@@ -1,5 +1,5 @@
 import React from 'react';
-import { findByTestId, render } from '@testing-library/react';
+import { findByTestId, render, screen } from '@testing-library/react';
 
 import { CurrentWeather, IProps } from '../../components/CurrentWeather';
 
@@ -24,27 +24,29 @@ function renderCurrentWeatherComponent( props : Partial<IProps> = {} ) {
 describe('current weather component', () => {
 
   it('should show the current temperature', () => {
-    const { findByTestId } = renderCurrentWeatherComponent();
+    const { getByTestId } = renderCurrentWeatherComponent();
 
-    expect(findByTestId('current-temperature')).toHaveTextContent('21°C');
+    const currentTemperature = getByTestId('current-temperature');
+
+    expect(currentTemperature.textContent).toBe('21°C');
   })
 
   it('should show current weather condition in image and condition text as alt', () => {
-    const { findByTestId } = renderCurrentWeatherComponent();
+    const { getByTestId } = renderCurrentWeatherComponent();
 
-    const currentCondition = findByTestId('current-temperature');
+    const currentCondition = getByTestId('current-condition');
 
     expect(currentCondition).toHaveAttribute('src', 'https://cdn.weatherapi.com/weather/64x64/night/116.png');
     expect(currentCondition).toHaveAttribute('alt', 'rain');
   })
 
   it('should show the min and max temperature of the day', () => {
-    const { findByTestId } = renderCurrentWeatherComponent();
+    const { getByTestId } = renderCurrentWeatherComponent();
 
-    const minTemperature = findByTestId('min-temperature');
-    const maxTemperature = findByTestId('max-temperature');
+    const minTemperature = getByTestId('max-temperature');
+    const maxTemperature = getByTestId('min-temperature');
 
-    expect(minTemperature).toHaveTextContent('15°');
-    expect(maxTemperature).toHaveTextContent('22°');
+    expect(minTemperature.textContent).toBe('15°');
+    expect(maxTemperature.textContent).toBe('22°');
   })
 })
