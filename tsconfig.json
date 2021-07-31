@@ -18,13 +18,13 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx",
+    "jsx": "react",
     "baseUrl": "src",
     "types": [
       "node",
       "jest",
       "@testing-library/jest-dom"
-    ]
+    ],
   },
   "include": [
     "src"
