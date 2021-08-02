@@ -70,15 +70,15 @@ function weatherApiUnify(rawData : AxiosResponse) {
     const dailyForecastHour = value.hour.map((value) : IForecastHour => {
       return {
         time: value.time,
-        temperatureInCelsius: value.temp_c,
+        temperatureInCelsius: Math.round(value.temp_c),
         condition: value.condition,
       } as IForecastHour
     });
 
     return {
       date: value.date,
-      minCelsiusTemperature: value.day.mintemp_c,
-      maxCelsiusTemperature: value.day.maxtemp_c,
+      minCelsiusTemperature: Math.round(value.day.mintemp_c),
+      maxCelsiusTemperature: Math.round(value.day.maxtemp_c),
       condition: value.day.condition,
       hour: dailyForecastHour,
     } as IForecast;
