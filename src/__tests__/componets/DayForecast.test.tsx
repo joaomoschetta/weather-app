@@ -3,7 +3,7 @@ import { render, getByTestId, getAllByTestId } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 import { DayForecast, IProps } from '../../components/DayForecast';
-import { weatherData } from './fakeWeatherData';
+import { weatherData } from '../../services/fakeWeatherData';
 
 function renderDayForecastComponent(props : Partial<IProps> = {}) {
   const defaultProps = {
@@ -27,7 +27,7 @@ describe('Forecast of the next days', () => {
 
     const abbreviation = getAllByTestId('abbreviation');
 
-    expect(abbreviation[0].textContent).toBe('Fri');
+    expect(abbreviation[0].textContent).toBe('Sat');
   });
 
   it('should show condition image with alt text', () => {
@@ -45,7 +45,7 @@ describe('Forecast of the next days', () => {
     const maxDayTemperature = getAllByTestId('max-day-temperature');
     const minDayTemperature = getAllByTestId('min-day-temperature');
 
-    expect(maxDayTemperature[0].textContent).toBe('21');
+    expect(maxDayTemperature[0].textContent).toBe('19');
     expect(minDayTemperature[0].textContent).toBe('17');
-  })
+  });
 })
