@@ -1,10 +1,12 @@
 import React from 'react';
-import { findByTestId, render, screen } from '@testing-library/react';
+import { findByTestId, render } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import {screen} from '@testing-library/dom';
 
-import { CurrentWeather, IProps } from '../../components/CurrentWeather';
+import { CurrentWeather, ICurrentWeather } from '../../components/CurrentWeather';
 
-function renderCurrentWeatherComponent( props : Partial<IProps> = {} ) {
-  const defaultProps : IProps = {
+function renderCurrentWeatherComponent( props : Partial<ICurrentWeather> = {} ) {
+  const defaultProps : ICurrentWeather = {
     now: {
       temperatureInCelsius: 21,
       condition: {

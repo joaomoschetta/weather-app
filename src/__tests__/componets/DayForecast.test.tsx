@@ -1,20 +1,16 @@
 import React from "react";
 import { render, getByTestId, getAllByTestId } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
 
 import { DayForecast, IProps } from '../../components/DayForecast';
+import { weatherData } from './fakeWeatherData';
 
 function renderDayForecastComponent(props : Partial<IProps> = {}) {
-  const defaultProps : IProps = {
-    day: 'Fri',
-    condition: {
-      text: 'rain',
-      icon: 'https://cdn.weatherapi.com/weather/64x64/night/116.png',
-    },
-    maxCelsiusTemperature: 21,
-    minCelsiusTemperature: 17,
+  const defaultProps = {
+    weatherData,
   }
 
-  return render(<DayForecast {...Array(3).fill(defaultProps)} {...props} />);
+  return render(<DayForecast {...defaultProps} {...props} />);
 }
 
 describe('Forecast of the next days', () => {
@@ -27,29 +23,29 @@ describe('Forecast of the next days', () => {
   });
 
   it('should show week day abbreviation', () => {
-    const { getByTestId } = renderDayForecastComponent();
+    const { getAllByTestId } = renderDayForecastComponent();
 
-    const abbreviation = getByTestId('abbreviation');
+    const abbreviation = getAllByTestId('abbreviation');
 
-    expect(abbreviation.textContent).toBe('Fri');
+    expect(abbreviation[0].textContent).toBe('Fri');
   });
 
   it('should show condition image with alt text', () => {
-    const { getByTestId } = renderDayForecastComponent();
+    const { getAllByTestId } = renderDayForecastComponent();
 
-    const dayCondition = getByTestId('day-condition');
+    const dayCondition = getAllByTestId('day-condition');
 
-    expect(dayCondition).toHaveAttribute('src', 'https://cdn.weatherapi.com/weather/64x64/night/116.png');
-    expect(dayCondition).toHaveAttribute('alt', 'rain');
+    expect(dayCondition[0].getAttribute('src')).toBe('https://cdn.weatherapi.com/weather/64x64/night/116.png');
+    expect(dayCondition[0].getAttribute('alt')).toBe('rain')
   });
 
   it('should show max and min day temperature', () => {
-    const { getByTestId } = renderDayForecastComponent();
+    const { getAllByTestId } = renderDayForecastComponent();
 
-    const maxDayTemperature = getByTestId('max-day-temperature');
-    const minDayTemperature = getByTestId('min-day-temperature');
+    const maxDayTemperature = getAllByTestId('max-day-temperature');
+    const minDayTemperature = getAllByTestId('min-day-temperature');
 
-    expect(maxDayTemperature.textContent).toBe('17');
-    expect(minDayTemperature.textContent).toBe('17');
+    expect(maxDayTemperature[0].textContent).toBe('21');
+    expect(minDayTemperature[0].textContent).toBe('17');
   })
 })
