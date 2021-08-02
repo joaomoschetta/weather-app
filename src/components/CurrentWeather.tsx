@@ -2,13 +2,12 @@ import { IWeatherDataNow, IWeatherDataToday} from '../services/unifyApiData';
 
 import '../styles/current-weather.scss';
 
-export interface IProps {
+export interface ICurrentWeather {
   now: IWeatherDataNow;
   today: IWeatherDataToday;
 }
 
-export function CurrentWeather(props : IProps) {
-  const now = props.now;
+export function CurrentWeather(props : ICurrentWeather) {
 
   return (
     <div className="current-weather">
@@ -18,8 +17,8 @@ export function CurrentWeather(props : IProps) {
       <div className="down-row">
         <img 
           data-testid="current-condition"
-          src={now.condition.icon}
-          alt={now.condition.text}
+          src={props.now.condition.icon}
+          alt={props.now.condition.text}
         />
 
         <div className="vertical-bar"></div>
