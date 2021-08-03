@@ -1,6 +1,8 @@
 import React from "react";
 import { IWeatherData } from "services/unifyApiData";
 
+import '../styles/day-forecast.scss'
+
 export interface IProps {
   weatherData: IWeatherData
 };
@@ -27,8 +29,8 @@ export function DayForecast(props : IProps) {
                 src={dayForecast.condition.icon}
                 alt={dayForecast.condition.text}
               />
-              <p data-testid="max-day-temperature">{dayForecast.maxCelsiusTemperature}</p>
-              <p data-testid="min-day-temperature">{dayForecast.minCelsiusTemperature}</p>
+              <p data-testid="max-day-temperature">{dayForecast.maxCelsiusTemperature}°</p>
+              <p data-testid="min-day-temperature">{dayForecast.minCelsiusTemperature}°</p>
             </li>
           )
         })}
