@@ -2,6 +2,8 @@ import React from "react";
 
 import { IWeatherData } from "../services/unifyApiData";
 
+import '../styles/next-hours-forecast.scss';
+
 export interface IProps {
   weatherData: IWeatherData;
 }
