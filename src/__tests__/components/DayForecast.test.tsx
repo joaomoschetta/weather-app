@@ -45,7 +45,7 @@ describe('Forecast of the next days', () => {
     const maxDayTemperature = getAllByTestId('max-day-temperature');
     const minDayTemperature = getAllByTestId('min-day-temperature');
 
-    expect(maxDayTemperature[0].textContent).toBe('19');
-    expect(minDayTemperature[0].textContent).toBe('17');
+    expect(maxDayTemperature[0].textContent).toBe('19°');
+    expect(minDayTemperature[0].textContent).toBe('17°');
   });
 })
