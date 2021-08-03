@@ -16,10 +16,7 @@ export default async function getWeatherData(lat: string, lon: string) {
     .catch(err => console.log(err))
 
   const weatherData = unifyApiData(apiData);
-  console.log(weatherData); // TEMP
   
   return weatherData;
 }
-
-getWeatherData('-26.7851281','-51.0184181') // TEMP
 
