@@ -33,18 +33,20 @@ export function LandingPage() {
     <div className="landing-page">
       {weatherData ? (
         <>
-          <div className="top-main-content">
-            <CurrentWeather
-              now={weatherData.now}
-              today={weatherData.today}
-            />
-            <DayForecast
+          <main>
+            <div className="top-main-content">
+              <CurrentWeather
+                now={weatherData.now}
+                today={weatherData.today}
+              />
+              <DayForecast
+                weatherData={weatherData}
+              />
+            </div>
+            <NextHoursForecast
               weatherData={weatherData}
             />
-          </div>
-          <NextHoursForecast
-            weatherData={weatherData}
-          />
+          </main>
           <Footer />
         </>
       ) : (
