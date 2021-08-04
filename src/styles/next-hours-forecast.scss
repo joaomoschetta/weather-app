@@ -5,7 +5,8 @@
   border-radius: 15px 15px 0 0;
 
   background-color: white;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
 
   > p {
     margin-bottom: 10px;
