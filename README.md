@@ -5,12 +5,13 @@
   <img width="23.62%" src="./.github/mobile.png" />
 </div>
 
+**[Live Demo](https://weather-app-joaomoschetta.herokuapp.com/)**
+
 [Figma (layout link)](https://www.figma.com/proto/5usL5CIGCmWA8nvNslOWu9/Weather-app?node-id=1%3A2&scaling=min-zoom)
 
 <br>
 
 ## ❓ About
----
 
 React weather app was built to improve practical knowledge about the used technologies. Main features of the project:
 - Current weather
@@ -22,7 +23,6 @@ This project was built using [create-react-app](https://create-react-app.dev/).
 <br>
 
 ## 💻 Tech
----
 
 - [React.js](https://reactjs.org/)
 - [Typescript](https://www.typescriptlang.org/)
@@ -35,7 +35,6 @@ The app consume [weatherapi](https://www.weatherapi.com/). Have unit tests for c
 <br>
 
 ## ⚙️ Run Project
----
 
 ### Environment variables
 
