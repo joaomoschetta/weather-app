@@ -10,6 +10,7 @@ export function Footer() {
         <a
           data-testid="anchor"
           target="_blank"
+          rel="noreferrer"
           href="https://github.com/joaomoschetta"
         >
           João Moschetta
